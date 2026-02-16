@@ -4,12 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="public/output.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         * {
             font-family: "poppins";
+        }
+        .active{
+            background: rgb(16, 41, 182);
+            color: white;
+        }
+        #vocabularies:empty{
+            padding: 0;
         }
     </style>
     <title>Assignment6</title>
@@ -53,11 +59,13 @@
 
         <section id="learn" class="text-center">
             <h3 class="text-4xl font-extrabold"><span class="text-info">Let's</span> Learn Vocabularies</h3>
+            <section id="lessons" class="py-10"></section>
+            <section id="vocabularies" class="grid grid-cols-3 bg-base-200 p-10 gap-5 text-center"></section>
         </section>
 
         <!-- ----------------------------------faq---------------------------------- -->
 
-        <section id="faq" class="text-2xl">
+        <section id="faq" class="text-2xl py-20">
             <h3 class="py-20 text-4xl text-center font-extrabold"><span class="text-info">Frequently</span> Asked
                 Questions
             </h3>
@@ -110,8 +118,10 @@
                     it's parent function or outer scope.</div>
             </div>
         </section>
+        <div class="border border-b-2 border-pink-100"></div>
     </main>
-    <footer class="py-10 px-5 flex justify-between items-center">
+
+    <footer class="py-20 px-5 flex justify-between items-center">
         <section>
             <h2 class="flex items-center gap-x-1 py-2">
                 ENGLISH<img src="assets/logo.png">জানালা
