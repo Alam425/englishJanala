@@ -10,35 +10,34 @@
         * {
             font-family: "poppins";
         }
-        .active{
+        .active {
             background: rgb(16, 41, 182);
             color: white;
-        }
-        #vocabularies:empty{
-            padding: 0;
         }
     </style>
     <title>Assignment6</title>
 </head>
 
 <body class="p-2">
-    <header>
-        <nav class="flex justify-between p-4 bg-gray-100">
-            <div class="flex items-center gap-x-1 justify-center">
-                ENGLISH<img src="assets/logo.png">জানালা
-            </div>
-            <div class="flex justify-between items-center gap-2">
-                <button class="btn btn-outline btn-primary"><img src="assets/fa-circle-question.png">FAQ</button>
-                <button class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png">LEARN</button>
-                <button class="btn btn-outline btn-primary"><img
-                        src="assets/fa-arrow-right-from-bracket.png">LOG-OUT</button>
-            </div>
-        </nav>
-        <div class="border-b-1 border-b-gray-400"></div>
+    <header class="relative">
+        <div class="fixed right-0 left-0 top-0 z-10">
+            <nav class="flex justify-between p-4 bg-gray-50">
+                <div class="flex items-center gap-x-1 justify-center">
+                    ENGLISH<img src="assets/logo.png">জানালা
+                </div>
+                <div class="flex justify-between items-center gap-2">
+                    <a onclick="scrollToSection(event, 'faq')" href="#faq" class="btn btn-outline btn-primary"><img src="assets/fa-circle-question.png">FAQ</a>
+                    <a onclick="scrollToSection(event, 'learn')" href="#learn" class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png">LEARN</a>
+                    <button id="logOutBtn" class="btn btn-outline btn-primary"><img
+                            src="assets/fa-arrow-right-from-bracket.png">LOG-OUT</button>
+                </div>
+            </nav>
+            <div class="border-b-1 border-b-gray-400"></div>
+        </div>
     </header>
 
     <main>
-        <section class="flex justify-between pl-5 items-center pb-20">
+        <section class="flex justify-between pl-5 items-center py-10">
             <section class="w-1/3 text-slate-800">
                 <h3 class="text-4xl font-extrabold"><span class="text-info">ENGLISH</span> IS EASY!!</h3>
                 <p class="py-2">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে
@@ -57,15 +56,25 @@
 
         <!-- ------------------------learn Vocabularies------------------------ -->
 
-        <section id="learn" class="text-center">
+        <section id="learn" class="text-center py-20">
             <h3 class="text-4xl font-extrabold"><span class="text-info">Let's</span> Learn Vocabularies</h3>
             <section id="lessons" class="py-10"></section>
-            <section id="vocabularies" class="grid grid-cols-3 bg-base-200 p-10 gap-5 text-center"></section>
+            <div id="noLessonSelected" class="p-10 bg-base-200">
+                <p class="text-md text-slate-600">আপনি এখনো কোন Lesson Select করেন ন</p>
+                <h3 class="text-xl text-slate-900 font-bold">একটি Lesson Select করুন।</h3>
+            </div>
+            <section id="vocabularies" class="grid grid-cols-3 bg-base-200 gap-5 text-center"></section>
+            <div class="text-center bg-base-200 p-10" id="noLessonAvailable" hidden >
+                <img class="mx-auto" src="assets/alert-error.png" alt="">
+                <p class="text-md text-slate-600">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                <h3 class="text-xl text-slate-900 font-bold">No Lesson Selected</h3>
+                
+            </div>
         </section>
 
         <!-- ----------------------------------faq---------------------------------- -->
 
-        <section id="faq" class="text-2xl py-20">
+        <section id="faq" class="text-2xl">
             <h3 class="py-20 text-4xl text-center font-extrabold"><span class="text-info">Frequently</span> Asked
                 Questions
             </h3>
@@ -118,10 +127,10 @@
                     it's parent function or outer scope.</div>
             </div>
         </section>
-        <div class="border border-b-2 border-pink-100"></div>
+        <div class="border border-b-2 border-pink-50 my-10"></div>
     </main>
 
-    <footer class="py-20 px-5 flex justify-between items-center">
+    <footer class="py-10 px-5 flex justify-between items-center">
         <section>
             <h2 class="flex items-center gap-x-1 py-2">
                 ENGLISH<img src="assets/logo.png">জানালা
@@ -132,10 +141,10 @@
         <section>
             <p class="text-sm text-slate-800">FOLLOW US</p>
             <div class="flex gap-x-2">
-                <img class="w-5 h-5" src="assets/fb-thumb.png" alt="">
-                <img class="w-5 h-5" src="assets/youtube-thumb.png" alt="">
-                <img class="w-5 h-5" src="assets/instagram-thumb.png" alt="">
-                <img class="w-5 h-5" src="assets/github-thumb.png" alt="">
+                <a><img class="w-5 h-5" src="assets/fb-thumb.png" alt=""></a>
+                <a><img class="w-5 h-5" src="assets/youtube-thumb.png" alt=""></a>
+                <a><img class="w-5 h-5" src="assets/instagram-thumb.png" alt=""></a>
+                <a><img class="w-5 h-5" src="assets/github-thumb.png" alt=""></a>
             </div>
         </section>
     </footer>
