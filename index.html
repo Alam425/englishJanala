@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="public/output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        * {
+            font-family: "poppins";
+        }
+    </style>
+    <title>Assignment6</title>
+</head>
+
+<body class="p-2">
+    <header>
+        <nav class="flex justify-between p-4 bg-gray-100">
+            <div class="flex items-center gap-x-1 justify-center">
+                ENGLISH<img src="assets/logo.png">জানালা
+            </div>
+            <div class="flex justify-between items-center gap-2">
+                <button class="btn btn-outline btn-primary"><img src="assets/fa-circle-question.png">FAQ</button>
+                <button class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png">LEARN</button>
+                <button class="btn btn-outline btn-primary"><img
+                        src="assets/fa-arrow-right-from-bracket.png">LOG-OUT</button>
+            </div>
+        </nav>
+        <div class="border-b-1 border-b-gray-400"></div>
+    </header>
+
+    <main>
+        <section class="flex justify-between pl-5 items-center pb-20">
+            <section class="w-1/3 text-slate-800">
+                <h3 class="text-4xl font-extrabold"><span class="text-info">ENGLISH</span> IS EASY!!</h3>
+                <p class="py-2">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে
+                    চান, আমাদের
+                    Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+                <fieldset class="fieldset">
+                    <input id="nameInput" type="text" class="input mb-1" placeholder="Enter Your Name" />
+                    <input id="passwordInput" type="password" class="input mb-1" placeholder="******" />
+                    <button id="inputAction" class="btn btn-primary w-1/3">Get Started</button>
+                </fieldset>
+            </section>
+            <section class="w-1/3">
+                <img src="assets/hero-student.png" alt="">
+            </section>
+        </section>
+
+        <!-- ------------------------learn Vocabularies------------------------ -->
+
+        <section id="learn" class="text-center">
+            <h3 class="text-4xl font-extrabold"><span class="text-info">Let's</span> Learn Vocabularies</h3>
+        </section>
+
+        <!-- ----------------------------------faq---------------------------------- -->
+
+        <section id="faq" class="text-2xl">
+            <h3 class="py-20 text-4xl text-center font-extrabold"><span class="text-info">Frequently</span> Asked
+                Questions
+            </h3>
+            <div class="collapse collapse-plus bg-base-200 border border-slate-200 mb-3">
+                <input type="radio" name="my-accordion-1" checked="checked" />
+                <div class="text-xl collapse-title font-semibold">What is the difference between `var`, `let`, and
+                    `const`.
+                </div>
+                <div class="collapse-content text-lg">All are used to declare any variables. But, `var` can hoist any
+                    reference variables below itself. `let` and `const don't hoist, but variables declared with `const`
+                    can't be changed.</div>
+            </div>
+            <div class="collapse collapse-plus bg-base-200 border border-slate-200 mb-3">
+                <input type="radio" name="my-accordion-1" />
+                <div class="text-xl collapse-title font-semibold">What is the difference between `map()`, `forEach()`,
+                    and
+                    `filter()`?</div>
+                <div class="collapse-content text-lg">All are used to loop through any array. `map()` method is used
+                    to
+                    loop an array and get all the elements in it. `forEach()` method is used to loop an array too, but
+                    it doesn't return anything. `filter()` method is used to loop and array and get only those elements
+                    that match the given condition. </div>
+            </div>
+            <div class="collapse collapse-plus bg-base-200 border border-slate-200 mb-3">
+                <input type="radio" name="my-accordion-1" />
+                <div class="text-xl collapse-title font-semibold">Explain arrow functions and how they are different
+                    from
+                    regular functions.</div>
+                <div class="collapse-content text-lg">For writing regular functions, we use the `function` keyword,
+                    then
+                    the function name, then the arguments, then we start to write all the functionalities. But, in arrow
+                    function, we don't need to use the ` function` keyword, just write the function name as the variable
+                    name, then put the arguments, and then we can start to write all the functionalities after `=>`.
+                    Sometimes, we can write a function within a single line with arrow function.</div>
+            </div>
+            <div class="collapse collapse-plus bg-base-200 border border-slate-200 mb-3">
+                <input type="radio" name="my-accordion-1" />
+                <div class="text-xl collapse-title font-semibold">How JavaScript Promises work?</div>
+                <div class="collapse-content text-lg">There is a method, called `fetch`. We can put a api url to it.
+                    Then, JavaScript promises to provide us the api. It is asynchronous. So, how even long the api
+                    responses, it will push itself to the queue. If, it succeeds, it show the api data. If it fails,
+                    then it says through `catch()`
+                    method.</div>
+            </div>
+            <div class="collapse collapse-plus bg-base-200 border border-slate-200 mb-3">
+                <input type="radio" name="my-accordion-1" />
+                <div class="text-xl collapse-title font-semibold">How closures work in JavaScript?</div>
+                <div class="collapse-content text-lg">Closure is a nested function, that can capture the variables
+                    from
+                    it's parent function or outer scope.</div>
+            </div>
+        </section>
+    </main>
+    <footer class="py-10 px-5 flex justify-between items-center">
+        <section>
+            <h2 class="flex items-center gap-x-1 py-2">
+                ENGLISH<img src="assets/logo.png">জানালা
+            </h2>
+            <h4 class="font-semibold">ইংরেজি শিখুন সহজে</h4>
+            <h6>Providing ED-Tech Applications since 2025</h6>
+        </section>
+        <section>
+            <p class="text-sm text-slate-800">FOLLOW US</p>
+            <div class="flex gap-x-2">
+                <img class="w-5 h-5" src="assets/fb-thumb.png" alt="">
+                <img class="w-5 h-5" src="assets/youtube-thumb.png" alt="">
+                <img class="w-5 h-5" src="assets/instagram-thumb.png" alt="">
+                <img class="w-5 h-5" src="assets/github-thumb.png" alt="">
+            </div>
+        </section>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
