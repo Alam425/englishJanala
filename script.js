@@ -1,14 +1,38 @@
+const headerSection = document.getElementById("header")
 const logOutBtn = document.getElementById("logOutBtn")
+const modalPopUp = document.getElementById("modal")
+const spinnerSec = document.getElementById("spinner")
 const nameInput = document.getElementById("nameInput")
 const passwordInput = document.getElementById("passwordInput")
 const inputAction = document.getElementById("inputAction")
+const bannerSection = document.getElementById("banner")
 const lessonSection = document.getElementById("lessons")
 const learnSection = document.getElementById("learn")
+const faqSection = document.getElementById("faq")
 const noLessonSelectedSection = document.getElementById("noLessonSelected")
 const noLessonAvailableSection = document.getElementById("noLessonAvailable")
 const vocabularySection = document.getElementById("vocabularies")
 
-logOutBtn.setAttribute("disabled", true)
+
+faqSection.classList.add("hidden")
+learnSection.classList.add("hidden")
+headerSection.classList.add("hidden")
+
+
+// -------------------------------------word utterance-------------------------------------
+function pronounceWord(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-EN';
+    window.speechSynthesis.speak(utterance);
+}
+// ----------------------------------------------------------------------------------------
+
+
+// ---------------------------------------spinner---------------------------------------
+const loader = document.createElement("div")
+loader.innerHTML = "<span class='loading mx-auto loading-spinner loading-xl'></span>"
+// -------------------------------------------------------------------------------------
+
 
 
 // ------------------------------------smooth scroll------------------------------------
@@ -37,9 +61,13 @@ const aciveClass = id => {
 // -----------------------------------display all levels section-----------------------------------
 
 const loadAllLevels = async () => {
+    lessonSection.appendChild(loader)
     await fetch('https://openapi.programming-hero.com/api/levels/all')
         .then(res => res.json())
-        .then(data => displayLevels(data?.data))
+        .then(data => {
+            displayLevels(data?.data)
+            lessonSection.removeChild(loader)
+        })
 }
 
 const displayLevels = (data) => {
@@ -59,9 +87,13 @@ const displayLevels = (data) => {
 
 // -------------------------------------load vocabularies section-------------------------------------
 const loadVocabularies = async (id) => {
+    spinnerSec.appendChild(loader)
     await fetch(`https://openapi.programming-hero.com/api/level/${id}`)
         .then(res => res.json())
-        .then(data => displayVocabulariesCard(data?.data))
+        .then(data => {
+            displayVocabulariesCard(data?.data)
+            spinnerSec.removeChild(loader)
+        })
 }
 
 const displayVocabulariesCard = data => {
@@ -70,7 +102,6 @@ const displayVocabulariesCard = data => {
         vocabularySection.classList.remove("p-10")
         return;
     }
-    console.log()
     data?.forEach(vocabulary => {
         const vocabularyCard = document.createElement("div")
         vocabularyCard.innerHTML = `
@@ -80,8 +111,8 @@ const displayVocabulariesCard = data => {
         <p class="text-lg">Meaning / Pronunciation</p>
         <h2 class="text-xl font-bold">${vocabulary?.meaning} / ${vocabulary?.pronunciation}</h2>
         <div class='flex justify-between items-center'>
-        <button><img src="assets/fa-circle-question.png" class="w-6 h-6"></button>
-        <button><img src="assets/volume_4757903.png" class="w-6 h-6"></button>
+        <button onclick="loadWordDetails('${vocabulary?.id}')"><img src="assets/information.png" class="w-6 h-6"></button>
+        <button onclick="pronounceWord('${vocabulary?.word}')"><img src="assets/volume_4757903.png" class="w-6 h-6"></button>
         </div>
     </div>
 </div>`
@@ -94,14 +125,42 @@ const displayVocabulariesCard = data => {
 
 
 // ----------------------------------------load word deatails----------------------------------------
-const loadWordDeatails = async id => {
+const loadWordDetails = async id => {
     await fetch(`https://openapi.programming-hero.com/api/word/${id}`)
         .then(res => res.json())
-        .then(data => displayWordDeatails(data))
+        .then(data => {
+            displayWordDeatails(data?.data)
+        })
 }
 
 const displayWordDeatails = data => {
-    console.log(data)
+    const synonymsHtml = data?.synonyms?.reduce((acc, da) => {
+        return acc + `<button class="text-slate-700 text-xl py-1 pr-1 mr-2 border-b-2 border-slate-700">${da}</button>`
+    }, '')
+
+    // ,partsOfSpeech ,points  ,synonyms: (3) [] 
+    const modalBox = document.createElement('div')
+    modalBox.innerHTML = `
+    <dialog id="modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-left rounded-md font-bold">
+        <div class="m-2 p-2 border-2 rounded-md border-gray-100">
+            <h3 class="text-2xl font-bold">${data?.word || "No Word Availble"}</h3>
+        <h3 class="flex text-md text-slate-700" onclick="pronounceWord('${data?.word}')"><img class="w-7 h-7" src="assets/mic.png">: ${data?.pronunciation || "No Pronunciation Available"}</h3>
+        <p class="pt-2 font-semibold">Meaning</p>
+        <p class="pb-2 text-slate-700">${data?.meaning || "No Meaning Available"}</p>
+        <p class="pt-2 font-semibold">Example</p>
+        <p class="pb-2 text-slate-700">${data?.sentence || "No Sentence Available"}</p>
+        <p class="pt-2 text-base font-semibold">সমার্থক শব্দ গুলো</p>
+        <button class="mb-7">${synonymsHtml || "No Synonym Available"}</button>
+        </div>
+            <form class="ml-2" method="dialog">
+                <button id="closeModal" class="btn btn-primary">Complete Learning</button>
+            </form>
+    </div>
+    </dialog>
+    `
+    modalPopUp.appendChild(modalBox)
+    modalBox.querySelector("#modal").showModal()
 }
 // --------------------------------------------------------------------------------------------------
 
@@ -120,15 +179,21 @@ inputAction.addEventListener("click", function inputActionFunc(key) {
         alert("Please Provide Correct Password")
         return;
     }
-    inputAction.setAttribute('disabled', true)
-    logOutBtn.removeAttribute("disabled")
+
     passwordInput.value = ""
     nameInput.value = ""
+    faqSection.classList.remove("hidden")
+    learnSection.classList.remove("hidden")
+    bannerSection.classList.add("hidden")
+    headerSection.classList.remove("hidden")
 })
 
 logOutBtn.addEventListener("click", function logOutBtnFunc() {
-    logOutBtn.setAttribute("disabled", true)
-    inputAction.removeAttribute("disabled")
+    bannerSection.classList.remove("hidden")
+    headerSection.classList.add("hidden")
+    faqSection.classList.add("hidden")
+    learnSection.classList.add("hidden")
+
 })
 // ------------------------------------------------------------------------------------------------------
 
