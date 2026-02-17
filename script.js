@@ -15,7 +15,7 @@ const vocabularySection = document.getElementById("vocabularies")
 
 
 faqSection.classList.add("hidden")
-// learnSection.classList.add("hidden")
+learnSection.classList.add("hidden")
 headerSection.classList.add("hidden")
 
 
