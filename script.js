@@ -142,14 +142,13 @@ const displayWordDeatails = data => {
         return acc + `<button class="text-slate-700 text-xl py-1 pr-1 mr-2 border-b-2 border-slate-700">${da}</button>`
     }, '')
 
-    // ,partsOfSpeech ,points  ,synonyms: (3) [] 
     const modalBox = document.createElement('div')
     modalBox.innerHTML = `
     <dialog id="modal" class="modal sm:modal-middle">
     <div class="modal-box text-left rounded-md font-bold">
         <div class="m-2 p-2 border-2 rounded-md border-gray-100">
             <h3 class="text-2xl font-bold">${data?.word || "No Word Availble"}</h3>
-        <h3 class="flex text-md text-slate-700 h-8 my-auto items-center" onclick="pronounceWord('${data?.word}')"><img class="w-7 h-7" src="assets/mic.png">: ${data?.pronunciation || "No Pronunciation Available"}</h3>
+        <h3 class="flex text-md text-slate-700 h-8 my-auto items-center" data-word='${data?.word}' id="mic"><img class="w-7 h-7" src="assets/mic.png">: ${data?.pronunciation || "No Pronunciation Available"}</h3>
         <p class="pt-2 font-semibold">Meaning</p>
         <p class="pb-2 text-slate-700">${data?.meaning || "No Meaning Available"}</p>
         <p class="pt-2 font-semibold">Example</p>
@@ -163,6 +162,9 @@ const displayWordDeatails = data => {
     </div>
     </dialog>
     `
+    modalBox.querySelector("#mic").addEventListener('click', function(){
+        pronounceWord(this.dataset.word)
+    })
     modalPopUp.appendChild(modalBox)
     modalBox.querySelector("#modal").showModal()
 }
