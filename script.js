@@ -102,6 +102,7 @@ const displayVocabulariesCard = data => {
         vocabularySection.classList.remove("p-10")
         return;
     }
+    vocabularySection.innerHTML = ''
     data?.forEach(vocabulary => {
         const word = vocabulary?.word
         const vocabularyCard = document.createElement("div")
@@ -142,6 +143,7 @@ const displayWordDeatails = data => {
         return acc + `<button class="text-slate-700 text-xl py-1 pr-1 mr-2 border-b-2 border-slate-700">${da}</button>`
     }, '')
 
+    modalPopUp.innerHTML = ""
     const modalBox = document.createElement('div')
     modalBox.innerHTML = `
     <dialog id="modal" class="modal sm:modal-middle">
