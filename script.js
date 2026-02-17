@@ -1,5 +1,5 @@
 const headerSection = document.getElementById("header")
-const logOutBtn = document.getElementById("logOutBtn")
+const logOutBtn = document.querySelectorAll(".logOutBtn")
 const modalPopUp = document.getElementById("modal")
 const spinnerSec = document.getElementById("spinner")
 const nameInput = document.getElementById("nameInput")
@@ -141,11 +141,11 @@ const displayWordDeatails = data => {
     // ,partsOfSpeech ,points  ,synonyms: (3) [] 
     const modalBox = document.createElement('div')
     modalBox.innerHTML = `
-    <dialog id="modal" class="modal modal-bottom sm:modal-middle">
+    <dialog id="modal" class="modal sm:modal-middle">
     <div class="modal-box text-left rounded-md font-bold">
         <div class="m-2 p-2 border-2 rounded-md border-gray-100">
             <h3 class="text-2xl font-bold">${data?.word || "No Word Availble"}</h3>
-        <h3 class="flex text-md text-slate-700" onclick="pronounceWord('${data?.word}')"><img class="w-7 h-7" src="assets/mic.png">: ${data?.pronunciation || "No Pronunciation Available"}</h3>
+        <h3 class="flex text-md text-slate-700 h-8 my-auto items-center" onclick="pronounceWord('${data?.word}')"><img class="w-7 h-7" src="assets/mic.png">: ${data?.pronunciation || "No Pronunciation Available"}</h3>
         <p class="pt-2 font-semibold">Meaning</p>
         <p class="pb-2 text-slate-700">${data?.meaning || "No Meaning Available"}</p>
         <p class="pt-2 font-semibold">Example</p>
@@ -167,7 +167,7 @@ const displayWordDeatails = data => {
 
 
 // ------------------------------get started button & log out button toggle------------------------------
-inputAction.addEventListener("click", function inputActionFunc(key) {
+inputAction.addEventListener("click", function inputActionFunc() {
     const passwordInputValue = passwordInput.value
     const nameInputValue = nameInput.value
 
@@ -186,15 +186,16 @@ inputAction.addEventListener("click", function inputActionFunc(key) {
     learnSection.classList.remove("hidden")
     bannerSection.classList.add("hidden")
     headerSection.classList.remove("hidden")
+    alert("Login Successful")
 })
 
-logOutBtn.addEventListener("click", function logOutBtnFunc() {
-    bannerSection.classList.remove("hidden")
-    headerSection.classList.add("hidden")
-    faqSection.classList.add("hidden")
-    learnSection.classList.add("hidden")
-
+logOutBtn.forEach(singleLogOutBtn => {
+    singleLogOutBtn.addEventListener("click", function logOutBtnFunc() {
+        bannerSection.classList.remove("hidden")
+        headerSection.classList.add("hidden")
+        faqSection.classList.add("hidden")
+        learnSection.classList.add("hidden") 
+    })
 })
-// ------------------------------------------------------------------------------------------------------
 
 loadAllLevels()

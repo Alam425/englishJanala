@@ -10,6 +10,7 @@
         * {
             font-family: "poppins";
         }
+
         .active {
             background: rgb(16, 41, 182);
             color: white;
@@ -21,14 +22,44 @@
 <body class="p-2">
     <header id="header" class="relative">
         <div class="fixed right-0 left-0 top-0 z-10">
-            <nav class="flex justify-between p-4 bg-gray-50">
+            <div class="navbar-start w-full p-4 bg-gray-50 sm:hidden">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2">
+                        <li>
+                            <a onclick="scrollToSection(event, 'faq')" href="#faq"
+                                class="btn btn-outline btn-primary"><img src="assets/fa-circle-question.png">FAQ</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToSection(event, 'learn')" href="#learn"
+                                class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png">LEARN</a>
+                        </li>
+                        <li>
+                            <button class="logOutBtn btn btn-outline btn-primary"><img
+                            src="assets/fa-arrow-right-from-bracket.png">LOG-OUT</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex items-center gap-x-1 justify-center">
+                    ENGLISH<img src="assets/logo.png">জানালা
+                </div>
+            </div>
+            <nav class="hidden sm:flex justify-between p-4 bg-gray-50">
                 <div class="flex items-center gap-x-1 justify-center">
                     ENGLISH<img src="assets/logo.png">জানালা
                 </div>
                 <div class="flex justify-between items-center gap-2">
-                    <a onclick="scrollToSection(event, 'faq')" href="#faq" class="btn btn-outline btn-primary"><img src="assets/fa-circle-question.png">FAQ</a>
-                    <a onclick="scrollToSection(event, 'learn')" href="#learn" class="btn btn-outline btn-primary"><img src="assets/fa-book-open.png">LEARN</a>
-                    <button id="logOutBtn" class="btn btn-outline btn-primary"><img
+                    <a onclick="scrollToSection(event, 'faq')" href="#faq" class="btn btn-outline btn-primary"><img
+                            src="assets/fa-circle-question.png">FAQ</a>
+                    <a onclick="scrollToSection(event, 'learn')" href="#learn" class="btn btn-outline btn-primary"><img
+                            src="assets/fa-book-open.png">LEARN</a>
+                    <button class="logOutBtn btn btn-outline btn-primary"><img
                             src="assets/fa-arrow-right-from-bracket.png">LOG-OUT</button>
                 </div>
             </nav>
@@ -36,9 +67,9 @@
         </div>
     </header>
 
-    <main>
-        <section id="banner" class="flex justify-between pl-5 items-center py-10">
-            <section class="w-1/3 text-slate-800">
+    <main class="">
+        <section id="banner" class="sm:flex justify-between pl-5 items-center py-10">
+            <section class="sm:w-1/3 text-slate-800">
                 <h3 class="text-4xl font-extrabold"><span class="text-info">ENGLISH</span> IS EASY!!</h3>
                 <p class="py-2">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে
                     চান, আমাদের
@@ -49,7 +80,7 @@
                     <button id="inputAction" class="btn btn-primary w-1/3">Get Started</button>
                 </fieldset>
             </section>
-            <section class="w-1/3">
+            <section class="hidden sm:w-1/3 sm:block">
                 <img src="assets/hero-student.png" alt="">
             </section>
         </section>
@@ -63,14 +94,14 @@
                 <p class="text-md text-slate-600">আপনি এখনো কোন Lesson Select করেন ন</p>
                 <h3 class="text-xl text-slate-900 font-bold">একটি Lesson Select করুন।</h3>
             </div>
-            <section id="vocabularies" class="grid grid-cols-3 bg-base-200 gap-5 text-center"></section>
+            <section id="vocabularies" class="grid sm:grid-cols-3 bg-base-200 gap-5 text-center"></section>
             <div id="spinner"></div>
             <div id="modal"></div>
-            <div class="text-center bg-base-200 p-10" id="noLessonAvailable" hidden >
+            <div class="text-center bg-base-200 p-10" id="noLessonAvailable" hidden>
                 <img class="mx-auto" src="assets/alert-error.png" alt="">
                 <p class="text-md text-slate-600">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
-                <h3 class="text-xl text-slate-900 font-bold">No Lesson Selected</h3>
-                
+                <h3 class="text-xl text-slate-900 font-bold">No Lesson Available</h3>
+
             </div>
         </section>
 
@@ -132,7 +163,7 @@
         <div class="border border-b-2 border-pink-50 my-10"></div>
     </main>
 
-    <footer class="py-10 px-5 flex justify-between items-center">
+    <footer class="p-10 px-5 flex justify-between items-center">
         <section>
             <h2 class="flex items-center gap-x-1 py-2">
                 ENGLISH<img src="assets/logo.png">জানালা
