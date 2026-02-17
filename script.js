@@ -179,22 +179,22 @@ inputAction.addEventListener("click", function inputActionFunc() {
         alert("Please Provide Correct Password")
         return;
     }
-
+    
     passwordInput.value = ""
     nameInput.value = ""
+    alert("Login Successful")
     faqSection.classList.remove("hidden")
     learnSection.classList.remove("hidden")
-    bannerSection.classList.add("hidden")
     headerSection.classList.remove("hidden")
-    alert("Login Successful")
+    bannerSection.classList.add("hidden") 
 })
 
 logOutBtn.forEach(singleLogOutBtn => {
     singleLogOutBtn.addEventListener("click", function logOutBtnFunc() {
-        bannerSection.classList.remove("hidden")
         headerSection.classList.add("hidden")
         faqSection.classList.add("hidden")
         learnSection.classList.add("hidden") 
+        bannerSection.classList.remove("hidden")
     })
 })
 
