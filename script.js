@@ -15,7 +15,7 @@ const vocabularySection = document.getElementById("vocabularies")
 
 
 faqSection.classList.add("hidden")
-learnSection.classList.add("hidden")
+// learnSection.classList.add("hidden")
 headerSection.classList.add("hidden")
 
 
@@ -103,6 +103,7 @@ const displayVocabulariesCard = data => {
         return;
     }
     data?.forEach(vocabulary => {
+        const word = vocabulary?.word
         const vocabularyCard = document.createElement("div")
         vocabularyCard.innerHTML = `
 <div class="card bg-base-100 h-48 w-96 shadow-sm">
@@ -112,10 +113,13 @@ const displayVocabulariesCard = data => {
         <h2 class="text-xl font-bold">${vocabulary?.meaning} / ${vocabulary?.pronunciation}</h2>
         <div class='flex justify-between items-center'>
         <button onclick="loadWordDetails('${vocabulary?.id}')"><img src="assets/information.png" class="w-6 h-6"></button>
-        <button onclick="pronounceWord('${vocabulary?.word}')"><img src="assets/volume_4757903.png" class="w-6 h-6"></button>
+        <button id="pronounceWord" data-word="${word}"><img src="assets/volume_4757903.png" class="w-6 h-6"></button>
         </div>
     </div>
 </div>`
+        vocabularyCard.querySelector("#pronounceWord").addEventListener("click", function() {
+            pronounceWord(this?.dataset?.word)
+        })
         vocabularySection.classList.add("p-10")
         vocabularySection.appendChild(vocabularyCard)
     })
